@@ -36,7 +36,8 @@ pipeline {
                 echo 'Доставка проєкту у папку cargo...'
                 sh '''
                     mkdir -p $HOME/cargo/localservice
-                    rsync -av --exclude='.git' --exclude='node_modules' --exclude='coverage' . $HOME/cargo/localservice/
+                    cp -r . $HOME/cargo/localservice/
+                    rm -rf $HOME/cargo/localservice/node_modules $HOME/cargo/localservice/.git $HOME/cargo/localservice/coverage
                     echo "Проєкт доставлено у: $HOME/cargo/localservice"
                     ls -la $HOME/cargo/localservice
                 '''
